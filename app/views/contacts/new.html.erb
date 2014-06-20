@@ -1,0 +1,100 @@
+<%= form_for :contact, url: contacts_path  do |f| %>
+  
+
+ <% if @contact.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@contact.errors.count, "error") %> prohibited
+      this article from being saved:</h2>
+    <ul>
+    <% @contact.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+
+
+
+<table class="CSS_Table_Example" style="width:300px;height:150px;">
+        <tr> 
+          <td>
+            <%= f.label :First_Name %>
+          </td>
+          <td >
+            <%= f.text_field :firstname %>
+          </td>
+          
+        </tr>
+        
+        <tr>
+          <td >
+          <%= f.label :Last_Name %>
+   
+          </td>
+          <td>
+             <%= f.text_field :lastname %>
+          </td>
+          
+        </tr>
+        <tr>
+          <td >
+            <%= f.label :Mobile_No %>
+    
+          </td>
+          <td>
+          <%= f.text_field :mno %>
+          </td>
+          
+        </tr>
+        <tr>
+          <td >
+            <%= f.label :Email_id %>
+  
+          </td>
+          <td>
+            <%= f.text_field :emailid %>
+          </td>
+          
+        </tr>
+        <tr>
+          <td >
+           <%= f.label :Address %>
+   
+          </td>
+          <td>
+            <%= f.text_area :add %>
+          </td> 
+
+          <tr>
+          <td >
+         <%= f.label :UploadPhoto  %>
+
+          </td>
+          <td>
+          <%= f.file_field :photo %>
+          </td>
+      
+        </tr>
+        
+          <tr>
+          <td >
+        
+     <%= f.submit %><% end %>
+
+          </td>
+          <td>
+         <%= link_to 'Back', contacts_path %>
+          </td>
+      
+        </tr>
+        
+
+
+      </table>
+
+
+
+
+
+

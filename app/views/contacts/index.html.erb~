@@ -1,0 +1,27 @@
+<h1>Listing articles</h1>
+ 
+<table>
+  <tr>
+    <th>FirstName</th>
+    <th>LastName</th>
+   <th>MobileNumber</th>
+    <th>Email_id</th>
+   <th>Address</th>
+   
+  </tr>
+ 
+  <% @contact.each do |contact| %>
+    <tr>
+      <td><%= contact.firstname %></td>
+      <td><%= contact.lastname %></td>
+	<td><%= contact.mno %></td>
+      <td><%= contact.emailid %></td>
+	<td><%= link_to 'Show', contact_path(contact) %></td>
+    <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+
+    </tr>
+  <% end %>
+
+</table>
+
+

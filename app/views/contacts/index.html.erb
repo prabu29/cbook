@@ -1,0 +1,47 @@
+
+
+
+ <table class="CSS_Table_Example" style="width:600px;height:150px;">
+
+  <tr>
+    <td>FirstName</td>
+    <td>LastName</td>
+   <td>MobileNumber</td>
+    <td>Email_id</td>
+   <td>Address</td>
+<td>Photos</td>
+<td></td>
+<td></td>
+<td></td>
+
+   
+  </tr>
+ 
+  <% @contact.each do |contact| %>
+    <tr>
+      <td><%= contact.firstname %></td>
+      <td><%= contact.lastname %></td>
+	     <td><%= contact.mno %></td>
+      <td><%= contact.emailid %></td>
+<td><%= contact.add %></td>
+<td><img src="/data/<%= contact.photo %>" width="50" height="40"/></td>
+	<td><%= link_to 'Show', contact_path(contact) %></td>
+    <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+<td><%= link_to 'Destroy', contact_path(contact),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+	<tr>
+<td></td>
+    <td><%= link_to 'Add Contact', new_contact_path(@contact) %></td>
+   <td></td>
+    <td></td>
+   <td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+	</tr>
+</table>
+
+

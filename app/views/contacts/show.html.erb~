@@ -1,0 +1,26 @@
+<p>
+  <strong>Title:</strong>
+  <%= @contact.firstname %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @contact.lastname %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @contact.mno %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @contact.emailid %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @contact.add %>
+</p>
+
+<%= link_to 'Back', contacts_path %>
