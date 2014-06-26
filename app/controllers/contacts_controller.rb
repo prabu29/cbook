@@ -19,9 +19,9 @@ class ContactsController < ApplicationController
 
 	def update
 		@contact=Contact.find(params[:id])
- 		image=params[:contact][:photo].original_filename
- 		@contact.photo = image
-   		if @contact.update(getparam)
+ 		image1=params[:contact][:photo].original_filename
+ 		@contact.photo = image1
+   		if @contact.update(contact_params)
 			respond_to do |format|
 				format.html { redirect_to @contact , notice: 'Contact updation Success' }
 			end
@@ -36,11 +36,21 @@ class ContactsController < ApplicationController
 		redirect_to contacts_path
 	end
 
+	def male
+		@contact = Contact.where(:image => 'Male')
+		render "index"
+
+	end
+
+	def female
+		@contact = Contact.where(:image => 'FeMale')
+		render "index"
+	end
 
 	def create
 	  	@contact = Contact.create(contact_params)
-		image=params[:contact][:photo].original_filename
-		@contact.photo = image
+		image1=params[:contact][:photo].original_filename
+		@contact.photo = image1
 		if @contact.save   
 		    respond_to do |format|
 		    	format.html { redirect_to @contact , notice: 'Done, Contact Added' }
@@ -49,12 +59,13 @@ class ContactsController < ApplicationController
 		    render 'new'
 		end
 	end
+	
 	private
 		def contact_params
-			image=params[:contact][:photo].original_filename
+			image1=params[:contact][:photo].original_filename
 	    	directory = "public/data"
- 	 		path = File.join(directory, image) 
+ 	 		path = File.join(directory, image1) 
 			File.open(path, "wb") { |f| f.write(params[:contact][:photo].read) }
-			params.require(:contact).permit(:firstname, :lastname, :mno, :emailid, :add)
+			params.require(:contact).permit(:firstname, :lastname, :mno, :emailid, :add, :image)
 		end
 end

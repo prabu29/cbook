@@ -4,8 +4,7 @@
 .tg  {border-collapse:collapse;border-spacing:4px;margin-left: 4cm;}
 .tg td{font-family:arial;color:#2e6955;font-size:12px;padding:2px 1px;border-style:none;overflow:hidden;word-break:normal; }
 .tg th{font-family:arial;color:#2e6955;font-size:12px;font-weight:normal;padding:5px 1px;overflow:hidden;word-break:normal;}
-.tg .tg-iu59{font-family:arial;color:#2e6955;  font-weight: bold;font-size:14px;  font-weight: bold;text-decoration:underline;}
-.a {font-family:arial;  font-weight: bold;font-size:14px;  font-weight: bold;text-decoration:underline;color:#2e6955; }
+.tg .tg-iu59{font-family:arial;  font-weight: bold;font-size:14px;  font-weight: bold;text-decoration:underline;}
 </style>
 
 
@@ -17,7 +16,7 @@
     <th class="tg-031e" rowspan="5">
         <img src="/data/<%= contact.photo %>" width="80" height="90"/>&nbsp&nbsp&nbsp&nbsp
     </th>
-    <th class="tg-iu59" colspan="2" align="left"><%= link_to contact.firstname,  contact_path(contact), :class => "a" %> &nbsp <%= contact.lastname %></th>
+    <th class="tg-iu59" colspan="2" align="left"><%= contact.firstname %> &nbsp <%= contact.lastname %></th>
   </tr>
   <tr>
     <td class="tg-031e">Gender</td>

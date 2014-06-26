@@ -1,10 +1,10 @@
-<h1>Editing Contact</h1>
+
  
 <%= form_for :contact, url: contact_path(@contact), method: :patch do |f| %>
   <% if @contact.errors.any? %>
-  <div id="error_explanation">
+  <div id="error_explanation" >
     <h2><%= pluralize(@contact.errors.count, "error") %> prohibited
-      this article from being saved:</h2>
+      this Contact from being saved:</h2>
     <ul>
     <% @contact.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -12,37 +12,159 @@
     </ul>
   </div>
   <% end %>
-  <p>
-    <%= f.label :First_Name %><br>
-    <%= f.text_field :firstname %>
-  </p>
+  
+
+<style type="text/css">
+#error_explanation
+{
+  font-family:arial;color:#2e6955;font-size:14px;font-weight:normal;padding:5px 3px;overflow:hidden;word-break:normal;
+}
+.tg  {border-collapse:collapse;border-spacing:4px;margin-left: 4cm;}
+.tg td{font-family:arial;color:#2e6955;font-size:14px;padding:5px 3px;border-style:none;overflow:hidden;word-break:normal; }
+.tg th{font-family:arial;color:#2e6955;font-size:14px;font-weight:normal;padding:5px 3px;overflow:hidden;word-break:normal;}
+.tg .tg-9x5w{font-family:arial;  font-weight: bold;  font-weight: bold;text-decoration:underline;}
+.tg .tg-iu59{font-family:arial; color:#2e6955;font-size:16px; font-weight: bold;  font-weight: bold;text-decoration:underline;}
+</style>
+
+
+<table class="tg"><tr><th class="tg-iu59">EditContacts</th></tr></table><br>
+
+<table class="tg">
+   <tr>
+    <td class="tg-0ord"> <%= f.label :First_Name %></td>
+    <td class="tg-031e"><%= f.text_field :firstname %></td>
+  </tr>
+  <tr>
+    <td class="tg-0ord">  <%= f.label :Last_Name %></td>
+    <td class="tg-031e"> <%= f.text_field :lastname %></td>
+  </tr>
+  <tr>
+    <td class="tg-0ord">   <%= f.label :Mobile_No %></td>
+    <td class="tg-031e">  <%= f.text_field :mno, :onkeypress => "return onlynum(event)" %></td>
+  </tr>
+  <tr>
+    <td class="tg-0ord"> <%= f.label :Email_id %>
+  </td>
+    <td class="tg-031e"> <%= f.text_field :emailid %></td>
+  </tr>
+  <tr>
+    <td class="tg-0ord"><%= f.label :Address %></td>
+    <td class="tg-031e"> <%= f.text_area :add, :onfocus => "return checkEmail()" %></td>
+  </tr>
+  <tr>
+    <td class="tg-0ord"><%= f.label :UploadPhoto  %></td>
+    <td class="tg-031e"><%= f.file_field :photo %></td>
+  </tr>
+  <tr>
+    <td class="tg-0ord"><%= f.label :Gender  %><br>
+</td>
+    <td class="tg-031e"><%= f.radio_button(:image, "Male") %>
+<%= f.label :image, "Male" %>
+<%= f.radio_button(:image, "Female") %>
+<%= f.label :image, "Female" %></td>
+  </tr>
+  <tr>
+    <td class="tg-031e"><%= link_to 'Back', contacts_path %></td>
+    <td class="tg-031e">  <%= f.submit :onclick => "return fun()" %><% end %></td>
+  </tr>
+</table>
+
+
+
+<script type="text/javascript">
+  window.onload = function () {
+    document.getElementById("contact_firstname").focus();
+}
+function fun()
+{
+  
+  var firstname = document.getElementById("contact_firstname").value;
+    var lastname = document.getElementById("contact_lastname").value;
+    var mno = document.getElementById("contact_mno").value;
+    var emailid =  document.getElementById("contact_emailid").value;
+    var add =  document.getElementById("contact_add").value;
+    var photo = document.getElementById("contact_photo").value;
+
  
-  <p>
-    <%= f.label :Last_Name %><br>
-    <%= f.text_field :lastname %>
-  </p>
-  <p>
-    <%= f.label :Mobile_No %><br>
-    <%= f.text_field :mno %>
-  </p>
- 
-  <p>
-    <%= f.label :Email_id %><br>
-    <%= f.text_field :emailid %>
-  </p>
-<p>
-    <%= f.label :Address %><br>
-    <%= f.text_field :add %>
-  </p>
- <p>
-<%= f.label :Photo  %><br>
-<%= f.file_field :photo %>
-</p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
- 
-<%= link_to 'Back', contacts_path %>
+  if(firstname=="")
+  {
+    document.getElementById("contact_firstname").focus();
+    return false;
+  }
+  else if(lastname=="")
+  {
+    document.getElementById("contact_lastname").focus();
+    return false;
+  }
+  else if(mno=="")
+  {
+    document.getElementById("contact_mno").focus();
+    return false;
+  }
+  else if(emailid=="")
+  {
+    document.getElementById("contact_emailid").focus();
+    return false;
+  }
+  else if(add=="")
+  {
+    document.getElementById("contact_add").focus();
+    return false;
+  }
+  else if(photo=="")
+  {
+    alert("Browse Image");
+    return false;
+  }
+  else
+  {
+    return true;
+  }
+
+}
+
+
+
+function onlynum(evt)
+{
+//getting key code of pressed key
+    var keycode = (evt.which) ? evt.which : evt.keyCode;
+    var mmo = document.getElementById('contact_mno').value;
+//comparing pressed keycodes
+    
+    if ((keycode < 48 || keycode > 57))
+    {
+        document.getElementById("contact_mno").value="";
+        document.getElementById("contact_mno").focus();
+        return false;
+    }
+    else
+    {
+    //Condition to check textbox contains ten numbers or not
+        if (mmo.length <10)
+        {
+            return true;
+        }
+        else
+       {
+          alert("Mobile no should be 10 digits")
+          document.getElementById("contact_mno").focus();
+          return false;
+        }
+      }
+}
+function checkEmail() {
+
+    var email = document.getElementById("contact_emailid");
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+    if (!filter.test(email.value)) {
+    alert('Please provide a valid email address');
+    email.focus();
+    return false;
+ }
+}
+
+</script>
 
 

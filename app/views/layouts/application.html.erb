@@ -1,14 +1,51 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cbook</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<title>Contact Book</title>
+ <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+
 </head>
 <body>
+    <div id="wrapper">
+        <div id="header">
+          <div   style="padding:32px 5px; margin-left: 4cm;font-weight: bold;   font-size:23px;">
+                 <span>
+                   
+                    <img src="/data/contact_book.jpg" width="20" height="20" />Contacts Book 
+              
+                </span>
 
-<%= yield %>
 
+                <span  style="margin-left: 10cm;">   
+                     
+                     <a style="color:white; font-size:15px;font-weight: none;"  href="/contacts/new" class="<% if action_name=="new" %> selected <% end %>" >  Home  </a>   
+
+                     &nbsp&nbsp&nbsp 
+
+                     <a style="color:white; font-size:15px;font-weight: none;" href="/contacts" class="<% if action_name=="index" %> selected <% end %>"> All </a> 
+
+                     &nbsp&nbsp&nbsp 
+       
+                     <a style="color:white; font-size:15px;font-weight: none;" href="/contacts/male" class="<% if action_name=="male" %> selected <% end %>">Male</a> 
+        
+                     &nbsp&nbsp&nbsp 
+       
+                      <a style="color:white; font-size:15px;font-weight: none;" href="/contacts/female" class="<% if action_name=="female" %> selected <% end %>">Female</a> 
+                </span>
+          </div>
+        </div>
+       
+        <div id="content">
+
+            <p><%= yield %> </p>
+       </div>
+        <div id="footer">
+            <div style="padding:9px 5px;" align = "center" ;>All text design @ 2014 Report Bee Edusys Pvt. Ltd.</div>
+        </div>
+    </div>
 </body>
 </html>

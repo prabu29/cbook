@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 get 'welcome/index'
+
+get "contacts/male"
+
+get "contacts/female"
+
 	resources :contacts
 
 

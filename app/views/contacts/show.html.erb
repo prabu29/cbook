@@ -1,69 +1,51 @@
 
 
-<table class="CSS_Table_Example" style="width:300px;height:150px;">
-				<tr> 
-					<td>
-						<%= @contact.firstname %>
-					</td>
-					<td >
-						<img src="/data/<%= @contact.photo %>" width="50" height="40"/>
-					</td>
-					
-				</tr>
-				
-				<tr>
-					<td >
-						Last Name:
-					</td>
-					<td>
-						<%= @contact.lastname %>
-					</td>
-					
-				</tr>
-				<tr>
-					<td >
-						Mobile No
-					</td>
-					<td>
-						<%= @contact.mno %>
-					</td>
-					
-				</tr>
-				<tr>
-					<td >
-						Email Id
-					</td>
-					<td>
-						<%= @contact.emailid %>
-					</td>
-					
-				</tr>
-				<tr>
-					<td >
-						Address
-					</td>
-					<td>
-						<%= @contact.add %>
-					</td>
-					
-				</tr>
-				<tr>
-					<td >
-						<%= link_to 'Back', contacts_path %>
-					</td>
-					<td>
-						 <%= link_to 'Edit', edit_contact_path(@contact) %>
-					</td>
-					
-				</tr>
-			</table>
-
-
-
-
-
-
-
-
-
-
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;margin-left: 4cm;}
+.tg td{font-family:Arial, sans-serif;color:#2e6955;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;color:#2e6955;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-9686{font-size:13px;font-family:"Arial Black", Gadget, sans-serif !important;;color:#2e6955;text-align:center}
+.tg .tg-4wxo{font-size:13px;font-family:Arial, Helvetica, sans-serif !important;;color:#2e6955}
+.tg .tg-2qey{font-size:13px;font-family:Arial, Helvetica, sans-serif !important;;color:#2e6955;text-align:center}
+ .tg-vbsk{font-size:14px;font-family:Arial, Helvetica, sans-serif !important;;color:#2e6955;text-align:center;font-weight: bold;}
+.a {font-family:arial;  font-weight: bold;font-size:14px;  font-weight: bold;text-decoration:underline;color:#2e6955; }
+.a.hover {text-decoration:none;}
+.show
+{
+	font-size: 16px;
+	text-decoration: underline;
+	font-weight: bold;
+	font: Arial;
+	color: #2e6955;
+	margin-left: 4cm;
+}
+</style>
+<span class="show">Show Contact</span>
+<table class="tg">
+  <tr>
+    <th class="tg-vbsk" colspan="3"><%= @contact.firstname %> &nbsp <%= @contact.lastname %></th>
+  </tr>
+  <tr>
+    <td class="tg-a6ba" rowspan="4">	<img src="/data/<%= @contact.photo %>" width="80" height="80"/></td>
+    <td class="tg-4wxo">Gender</td>
+    <td class="tg-a6ba"><%= @contact.image%></td>
+  </tr>
+  <tr>
+    <td class="tg-a6ba">Mobile No</td>
+    <td class="tg-a6ba"><%= @contact.mno%></td>
+  </tr>
+  <tr>
+    <td class="tg-a6ba">Email_Id</td>
+    <td class="tg-a6ba"><%= @contact.emailid%></td>
+  </tr>
+  <tr>
+    <td class="tg-a6ba">Address</td>
+    <td class="tg-a6ba"><%= @contact.add%></td>
+  </tr>
+  <tr>
+    <td class="tg-fwcs"><%= link_to 'Destroy', contact_path,
+                    method: :delete, data: { confirm: 'Are you sure?' },:class => "a" %></td>
+    <td class="tg-fwcs"><%= link_to 'Back', contacts_path, :class => "a"  %></td>
+    <td class="tg-fwcs"><%= link_to 'Edit', edit_contact_path(@contact), :class => "a" %></td>
+  </tr>
+</table>
