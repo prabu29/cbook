@@ -45,7 +45,15 @@ class ContactsController < ApplicationController
 	def female
 		@contact = Contact.where(:image => 'FeMale')
 		render "index"
-	end
+  end
+
+
+  def ajax
+    @contact = Contact.where("firstname like ?", "#{params[:firstname]}%")
+   render json:@contact.as_json
+
+  end
+
 
 	def create
 	  	@contact = Contact.create(contact_params)

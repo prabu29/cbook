@@ -4,6 +4,8 @@ get 'welcome/index'
 get "contacts/male"
 
 get "contacts/female"
+get "contacts/ajax"
+get "contacts/show"
 
 	resources :contacts
 

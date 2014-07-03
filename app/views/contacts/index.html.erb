@@ -1,13 +1,153 @@
-
-
+<head>
 <style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:4px;margin-left: 4cm;}
+.tg {border-collapse:collapse;border-spacing:4px;margin-left: 4cm;}
 .tg td{font-family:arial;color:#2e6955;font-size:12px;padding:2px 1px;border-style:none;overflow:hidden;word-break:normal; }
 .tg th{font-family:arial;color:#2e6955;font-size:12px;font-weight:normal;padding:5px 1px;overflow:hidden;word-break:normal;}
-.tg .tg-iu59{font-family:arial;color:#2e6955;  font-weight: bold;font-size:14px;  font-weight: bold;text-decoration:underline;}
-.a {font-family:arial;  font-weight: bold;font-size:14px;  font-weight: bold;text-decoration:underline;color:#2e6955; }
+.tg .tg-iu59{font-family:arial;color:#2e6955; font-weight: bold;font-size:14px; font-weight: bold;text-decoration:underline;}
+.a {font-family:arial; font-weight: bold;font-size:14px; font-weight: bold;text-decoration:underline;color:#2e6955; }
+
+
+        
+        .account-info1
+        {
+         
+        }
+        .account-info1 label {
+            color: #2e6955;
+            display: block;
+            font: 14px arial;
+            font-weight: bold;
+            
+           
+            margin-left: 153px;
+        }
+        .account-info1 input {
+            background: #fff;
+            border: 1px solid #c6c7cc;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .1);
+            color: #636466;
+            padding: 6px;
+            
+            width: 250px;
+        }
+        .ajaxshow1
+        {
+          margin-left: 265px;
+          padding-top: 0px;
+          margin-top: 0px;
+          padding-bottom: 10px;
+          font: 14px arial;
+          
+           
+            color: #636466;
+           
+          background: white;
+          width: 260px;
+        }
+
+        .ajaxshow1 a
+        {
+         
+          font: 14px arial;
+
+          color: #636466;
+          text-decoration: none;
+          }
+        .ajaxshow1 a:hover
+        {
+         
+          font: 14px arial;
+         
+          color: #2e6955;
+          font-weight: bold;
+          text-decoration: none;
+          }
+
+          
+        .list
+        {
+          position: absolute;
+          
+          background: #fff;
+            border: 1px solid #c6c7cc;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .1);
+            color: #636466;
+            padding: 6px;
+            
+            width: 266px;
+       }
+   
 </style>
 
+<script type="text/javascript">
+  
+  function ajaxfun()
+  {
+   
+        var xmlhttp;
+
+        var firstname = document.getElementById("search").value;
+
+       
+
+        if(window.XMLHttpRequest)
+        {
+            xmlhttp = new XMLHttpRequest();
+        }
+        else
+        {
+            xmlhttp = new ActiveXObejct("Microsoft.XMLHTTP");
+        }
+
+
+        xmlhttp.onreadystatechange = function()
+        {
+          
+              if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+              {
+                  var jsonObj = JSON.parse(xmlhttp.responseText);
+                  //alert(jsonObj.toString);
+                  document.getElementById("ajaxshow").innerHTML =""; 
+                  
+                //  var x = document.getElementById("list");
+                //  document.getElementById("list").focus();
+                 // x.remove(option);
+
+                      for(var i = 0; i < jsonObj.length; i++)
+                      {
+                        var option = document.createElement("option");
+
+                        document.getElementById("ajaxshow").innerHTML += '<a href="http://localhost:3000/contacts/'+jsonObj[i].id+'">'+ jsonObj[i].firstname + "  " + jsonObj[i].lastname+"</a><br>";
+                         
+                         // option.text = jsonObj[i].firstname;
+                           // x.add(option);
+                      }
+              }
+        }
+
+        xmlhttp.open("GET","http://localhost:3000/contacts/ajax?firstname="+firstname,true);
+        xmlhttp.send();
+  }
+
+</script>
+</head>
+<body>
+
+
+  <div class="account-info1">
+        <label style="padding-top: 12px;padding-right: 10px;">
+            Search Contact
+
+            <input type="text" onkeyup="ajaxfun();" id="search"> 
+            <!--  <select  class="list" id="list" >
+              </select>   -->
+         </label>
+           
+
+           
+</div>
+<div id="ajaxshow" class="ajaxshow1">
+</div>
 
 <table class="tg"><tr><th class="tg-iu59">All Contact Details</th></tr></table><br>
 <% @contact.each do |contact| %>
@@ -17,7 +157,7 @@
     <th class="tg-031e" rowspan="5">
         <img src="/data/<%= contact.photo %>" width="80" height="90"/>&nbsp&nbsp&nbsp&nbsp
     </th>
-    <th class="tg-iu59" colspan="2" align="left"><%= link_to contact.firstname,  contact_path(contact), :class => "a" %> &nbsp <%= contact.lastname %></th>
+    <th class="tg-iu59" colspan="2" align="left"><%= link_to contact.firstname, contact_path(contact), :class => "a" %> &nbsp <%= contact.lastname %></th>
   </tr>
   <tr>
     <td class="tg-031e">Gender</td>
@@ -34,7 +174,7 @@
   <tr>
     <td class="tg-031e">Address</td>
     <td class="tg-031e">&nbsp&nbsp<%= contact.add %></td>
-  </tr> 
+  </tr>
  
 </table> <hr><% end %>
- 
+</body>

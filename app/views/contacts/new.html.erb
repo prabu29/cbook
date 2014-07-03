@@ -84,8 +84,7 @@
 }
 function fun()
 {
-  
-  var firstname = document.getElementById("contact_firstname").value;
+    var firstname = document.getElementById("contact_firstname").value;
     var lastname = document.getElementById("contact_lastname").value;
     var mno = document.getElementById("contact_mno").value;
     var emailid =  document.getElementById("contact_emailid").value;
@@ -93,31 +92,33 @@ function fun()
     var photo = document.getElementById("contact_photo").value;
 
  
-  if(firstname=="")
+  if(firstname.trim()=="")
   {
+    document.getElementById("contact_firstname").value = "";
     document.getElementById("contact_firstname").focus();
     document.getElementById("contact_firstname").style.borderColor = "red";
     return false;
   }
-  else if(lastname=="")
+  else if(lastname.trim()=="")
   {
+    document.getElementById("contact_lastname").value="";
     document.getElementById("contact_lastname").focus();
     document.getElementById("contact_lastname").style.borderColor = "red";
     return false;
   }
-  else if(mno=="")
+  else if(mno.trim()=="")
   {
     document.getElementById("contact_mno").focus();
     document.getElementById("contact_mno").style.borderColor = "red";
     return false;
   }
-  else if(emailid=="")
+  else if(emailid.trim()=="")
   {
     document.getElementById("contact_emailid").focus();
     document.getElementById("contact_emailid").style.borderColor = "red";
     return false;
   }
-  else if(add=="")
+  else if(add.trim()=="")
   {
     document.getElementById("contact_add").focus();
     document.getElementById("contact_add").style.borderColor = "red";
