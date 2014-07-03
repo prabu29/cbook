@@ -50,10 +50,12 @@ class ContactsController < ApplicationController
 
   def ajax
     @contact = Contact.where("firstname like ?", "#{params[:firstname]}%")
-    puts @contact
-    puts "------------"
+   # puts @contact
+    # puts @contact.to_s
+   # puts "------------"
     puts @contact.as_json
    render json:@contact.as_json
+    #render json:@contact.to_json
 
   end
 
