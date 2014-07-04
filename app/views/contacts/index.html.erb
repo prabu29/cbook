@@ -7,7 +7,19 @@
 .a {font-family:arial; font-weight: bold;font-size:14px; font-weight: bold;text-decoration:underline;color:#2e6955; }
 
 
-        
+        .menu
+        {
+          margin-left: 263px;
+          height: 20px;
+          position: absolute;
+          padding-top: 0px;
+          margin-top: 0px;
+          font: 14px arial;
+          color: #636466;
+          background: white;
+           border: 1px solid #c6c7cc;
+          width: 260px;
+        }
         .account-info1
         {
          
@@ -32,7 +44,7 @@
         }
         .ajaxshow1
         {
-          margin-left: 258px;
+          margin-left: 263px;
           position: absolute;
           padding-top: 0px;
           margin-top: 0px;
@@ -77,10 +89,62 @@
        }
    
 </style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
 
 <script type="text/javascript">
+
+
+
+
+$(document).ready(function()  {
+    
+    
+   
+        $("#search").keyup(function() { var firstname = $('#search').val(); 
+           $.ajax({ 
+            type:"get",
+            url:"http://localhost:3000/contacts/ajax",
+            data:'firstname='+firstname,
+            success:function(result)  {
+                
+                  $("#ajaxshow").html("");
+                  if($.trim(result)=="" || result==null)
+                  {
+                        $("#ajaxshow").append("doesn't matching search");
+                        $("#ajaxshow").css({'color':'red'}); 
+                  }
+                  else
+                  {
+                       $("#ajaxshow").html("");
+
+                        for (var i in result)
+                        {
+                          if($.trim(result).length==0)
+                            $("#ajaxshow").append("doesn't matching search");
+                          else
+                            $("#ajaxshow").append('<a href="http://localhost:3000/contacts/'+result[i].id+'">'+result[i].firstname+' '+ result[i].lastname+'</a><br>');
+                        }
+                  }
+                 
+                  
+                
+              }});
+        });
+  });
   
-  function ajaxfun()
+
+
+
+
+$(document).ready(function() {
+    $('.showmenu').hover(function() {
+         $('.menu').toggle("slide");
+    });
+});
+ /* function ajaxfun()
   {
    
         var xmlhttp;
@@ -127,7 +191,7 @@
         xmlhttp.open("GET","http://localhost:3000/contacts/ajax?firstname="+firstname,true);
         xmlhttp.send();
   }
-
+*/
 </script>
 </head>
 <body>
@@ -137,7 +201,7 @@
         <label style="padding-top: 12px;padding-right: 10px;">
             Search Contact
 
-            <input type="text" onkeyup="ajaxfun();" id="search" autocomplete="off"> 
+            <input type="text"  id="search" autocomplete="off"> 
             <!--  <select  class="list" id="list" >
               </select>   -->
          </label>
@@ -149,6 +213,11 @@
 
 <div id="ajaxshow" class="ajaxshow1">
 </div>
+<div class="menu" >
+  Welcome
+
+</div>
+
 
 <table class="tg"><tr><th class="tg-iu59">All Contact Details</th></tr></table><br>
 <% @contact.each do |contact| %>
@@ -179,3 +248,7 @@
  
 </table> <hr><% end %>
 </body>
+
+
+
+
