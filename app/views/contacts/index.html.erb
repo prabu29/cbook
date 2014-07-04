@@ -44,9 +44,9 @@
         }
         .ajaxshow1
         {
-          margin-left: 263px;
+          margin-left: 259px;
           position: absolute;
-          padding-top: 0px;
+          padding: 0px;
           margin-top: 0px;
           font: 14px arial;
           color: #636466;
@@ -59,8 +59,7 @@
         {
          
           font: 14px arial;
-          padding-left:4px;
-          padding-top: 10px;
+          
           color: #636466;
           text-decoration: none;
           }
@@ -104,10 +103,12 @@ $(document).ready(function()  {
     
    
         $("#search").keyup(function() { var firstname = $('#search').val(); 
+         
            $.ajax({ 
             type:"get",
             url:"http://localhost:3000/contacts/ajax",
             data:'firstname='+firstname,
+
             success:function(result)  {
                 
                   $("#ajaxshow").html("");
@@ -138,12 +139,12 @@ $(document).ready(function()  {
 
 
 
-
+/*
 $(document).ready(function() {
     $('.showmenu').hover(function() {
          $('.menu').toggle("slide");
     });
-});
+});*/
  /* function ajaxfun()
   {
    
@@ -213,10 +214,13 @@ $(document).ready(function() {
 
 <div id="ajaxshow" class="ajaxshow1">
 </div>
+<!--
 <div class="menu" >
   Welcome
 
 </div>
+
+-->
 
 
 <table class="tg"><tr><th class="tg-iu59">All Contact Details</th></tr></table><br>
